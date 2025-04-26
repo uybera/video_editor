@@ -3,11 +3,12 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:get_thumbnail_video/index.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:video_editor/src/controller.dart';
 import 'package:video_editor/src/models/file_format.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
+import 'package:get_thumbnail_video/video_thumbnail.dart';
 
 class FFmpegVideoEditorExecute {
   const FFmpegVideoEditorExecute({
@@ -233,7 +234,7 @@ class CoverFFmpegVideoEditorConfig extends FFmpegVideoEditorConfig {
         timeMs: controller.selectedCoverVal?.timeMs ??
             controller.startTrim.inMilliseconds,
         quality: quality,
-      );
+      ).then((v) => v.path);
 
   /// Returns a [FFmpegVideoEditorExecute] command to be executed with FFmpeg to export
   /// the cover image applying the editing parameters.
